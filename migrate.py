@@ -30,9 +30,6 @@ def connect_to_db():
             print('You have decided to exit,Bye')
             CONNECTION.close()
             sys.exit()
-			
-			
-
 
 def Get_Column_Names_Of_Table(table_name):
     cu = CONNECTION.cursor()
@@ -86,11 +83,7 @@ def restore_data(dataframe,series):
 		clean = clean_data(series)
 		dataframe['clinic_number'] = clean
 		return dataframe
-								
 					
-				
-				
-		
 
 def Query_Table(table_name,mfl):
 	try:
@@ -105,9 +98,6 @@ def Query_Table(table_name,mfl):
 		print(e)
 	return data_frame	
 	
-	
-	
-	
 connect_to_db()
 data = Query_Table('tbl_client',10100)
 print(data[:4])
@@ -117,9 +107,3 @@ clean = clean_data(cd)
 cleaned = restore_data(data,clean)
 print(cleaned[:4])
 cleaned.to_csv('cleaned.csv', index=False)
-
-
-
-
-
-

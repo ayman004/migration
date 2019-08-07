@@ -50,9 +50,9 @@ def get_client_data(data):
 	client_data = data['clinic_number']
 	return client_data
 	
-def clean_data(client_data):
+def check_data_length(client_data):
 	wrong_client_number = []
-	chars = ['/', '\\','-','*']
+	
 	#Check if there is data
 	if len(client_data) > 0:
 		#clean_data
@@ -62,21 +62,23 @@ def clean_data(client_data):
 				#get those client
 				#client_id = client_data[i]
 				pass
-				#query that clients data
-			else:
-				#check clients number if it contains alpahunmeric
-				for i in range(len(client_data)):
-					if not client_data[i].isdigit():
-						change = client_data[i]
-						##Get the record that is has alpha and replace then
-						for c in change:
-							if c.isalpha():
-								change = change.replace(c,str(0))
-								client_data[i] = change
-							if c in chars:
-								change = change.replace(c,str(0))
-								client_data[i] = change
-								
+	return client_data		
+	
+def clean_data(client_data):
+	chars = ['/', '\\','-','*']
+	if len(client_data) > 0:
+		for i in range(len(client_data)):
+			if not client_data[i].isdigit():
+				change = client_data[i]
+				##Get the record that is has alpha and replace then
+				for c in change:
+					if c.isalpha():
+						change = change.replace(c,str(0))
+						client_data[i] = change
+						if c in chars:
+							change = change.replace(c,str(0))
+							client_data[i] = change
+									
 								
 	return client_data	
 

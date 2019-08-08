@@ -48,17 +48,34 @@ def get_client_data(data):
 	return client_data
 	
 def check_data_length(client_data):
-	wrong_client_number = []
-	
+	length = 10
 	#Check if there is data
 	if len(client_data) > 0:
 		#clean_data
 		for i in range(len(client_data)):
-			if len(client_data[i]) != 10:
+			client_data[i] = str(client_data[i]).replace(' ','')
+			if len(client_data[i]) != length:
+				#check if data is less than 10 if so add
 				#Data is wrong
 				#get those client
 				#client_id = client_data[i]
-				pass
+				if len(client_data[i]) > length:
+					data_length = len(client_data[i])
+					mfl,ccc = client_data[i][:5],client_data[i][5:]
+					client_data[i] = mfl+ccc[-5:]
+				else:
+					data_length = len(client_data[i])
+					mfl,ccc = client_data[i][:5],client_data[i][5:]
+					#ccl_length = len(ccc)
+					#required_ccc_length = 5
+					#less_ccc = required_ccc_length - ccl_length
+					for k in range((length-data_length)):
+						ccc = '0' + ccc
+					client_data[i] = mfl + ccc
+					
+					
+
+					
 	return client_data		
 	
 def clean_data(client_data):

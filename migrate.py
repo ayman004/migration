@@ -86,12 +86,10 @@ def clean_data(client_data):
 				change = client_data[i]
 				##Get the record that is has alpha and replace then
 				for c in change:
-					if c.isalpha():
+					if c.isalpha() or c in chars:
 						change = change.replace(c,str(0))
-						client_data[i] = change
-						if c in chars:
-							change = change.replace(c,str(0))
-							client_data[i] = change
+				client_data[i] = change		
+						
 									
 								
 	return client_data	
